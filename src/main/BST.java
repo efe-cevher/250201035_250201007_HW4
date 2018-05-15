@@ -14,6 +14,11 @@ public interface BST<K extends Comparable<K>,V> {
 	/**
 	 * Removes the value associated with ​key​.
 	 * @param key
+	 */
+	public void remove(K key);
+	/**
+	 * Updates the value associated with key​ from old value to value​
+	 * @param key
 	 * @param value
 	 */
 	public void update(K key, V value);

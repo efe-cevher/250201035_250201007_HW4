@@ -12,21 +12,64 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		nodeArray = (Node<K,V>[])new Object[128];
 	}
 
-	
+	private int getNodeIndex(K key) {
+		int currentIndex = 0;
+		boolean found = false;
+		while (!found)
+        {	
+			if (key.compareTo((nodeArray[currentIndex].getKey()) ) == 0){
+				found = true;
+			}
+			else if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) 
+           {
+                 currentIndex = currentIndex*2+1;
+           }
+           else {
+                 currentIndex = currentIndex*2+2;
+           }
+        }
+		return currentIndex;
+	}
 	public V get(K key) {
 		
 		return null;
 	}
-
+	
 
 	public void add(K key,V value) {
+		
+		Node<K,V> newNode =new Node<K, V>(key, value);
+		int currentIndex = 0;
+		boolean added = false;
+        while (!added)
+        {
+           if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) {
+              if (nodeArray[currentIndex*2+1] == null) {
+                 nodeArray[currentIndex*2+1] = newNode;
+                 added = true;
+              }
+              else
+                 currentIndex = currentIndex*2+1;
+           }
+           else {
+              if (nodeArray[currentIndex*2+2] == null) {
+                 nodeArray[currentIndex*2+2] = newNode;
+                 added = true;
+              }
+              else
+                 currentIndex = currentIndex*2+2;
+           }
+           
+        }
+        numOfEntries++;	
+	}
+	public void remove(K key) {
 		
 		
 	}
 
-
 	public void update(K key, V value) {
-
+		
 		
 	}
 
