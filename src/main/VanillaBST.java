@@ -1,17 +1,16 @@
 package main;
 
-import java.util.List;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	@Override
-	public V get() {
+	public V get(K key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void add() {
+	public void add(K key,V value) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -23,13 +22,13 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	@Override
-	public List<K> keys() {
+	public K[] keys() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<V> values() {
+	public V[] values() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,13 +46,13 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	@Override
-	public List<V> lessThan() {
+	public V[] lessThan(K key) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<V> greaterThan() {
+	public V[] greaterThan(K key) {
 		// TODO Auto-generated method stub
 		return null;
 	}

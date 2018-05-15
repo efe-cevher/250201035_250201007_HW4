@@ -21,12 +21,12 @@ public interface BST<K extends Comparable<K>,V> {
 	 * Returns all the keys in the tree.
 	 * @return list of keys
 	 */
-	public List<K> keys();
+	public K[] keys();
 	/**
 	 * Returns all the values in the tree.
 	 * @return list of values
 	 */
-	public List<V> values();
+	public V[] values();
 	/**
 	 * Returns the value associated with the smallest key.
 	 * @return minimum value
@@ -41,12 +41,12 @@ public interface BST<K extends Comparable<K>,V> {
 	 * Returns all the values associated with a smaller key than ​key​.
 	 * @return list of values
 	 */
-	public List<V> lessThan(K ​key​);
+	public V[] lessThan(K key);
 	/**
 	 * Returns all the values associated with a larger key than ​key​.
 	 * @return list of values
 	 */
-	public List<V> greaterThan(K ​key​);
+	public V[] greaterThan(K key);
 	/**
 	 * Returns the number of values (or keys) in the tree.
 	 * @return an integer of size
@@ -69,8 +69,6 @@ on the same level)
 	 * @return boolean
 	 */
 	public boolean isFullTree();
-	V get();
-	void add();
 	
 }	
 
