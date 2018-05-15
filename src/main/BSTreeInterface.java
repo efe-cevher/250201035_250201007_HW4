@@ -1,15 +1,16 @@
 package main;
 
-public interface BSTreeInterface {
+
+public interface BSTreeInterface<V,K> {
 	/**
 	 * Returns the value associated with ​key​.
 	 * @return value
 	 */
-	public V get(K ​key​);
+	public V get(K key​);
 	/**
 	 * Adds ​value​ to the tree with respect to ​key​.
 	 */
-	public void add(K ​key​, V ​value​);
+	public void add(K key​, V value​);
 	/**
 	 * Removes the value associated with ​key​.
 	 * @param key
@@ -68,6 +69,8 @@ on the same level)
 	 * @return boolean
 	 */
 	public boolean isFullTree();
+	V get();
+	void add();
 	
 }	
 
