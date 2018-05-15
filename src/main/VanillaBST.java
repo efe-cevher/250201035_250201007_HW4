@@ -3,6 +3,7 @@ package main;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
+	
 	private Node<K,V>[] nodeArray;
 	private int numOfEntries;
 	
@@ -10,82 +11,83 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public VanillaBST() {
 		nodeArray = (Node<K,V>[])new Object[128];
 	}
+
 	
-	@Override
 	public V get(K key) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-	@Override
+
 	public void add(K key,V value) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
+
 	public void update(K key, V value) {
-		// TODO Auto-generated method stub
+
 		
 	}
 
-	@Override
+	
 	public K[] keys() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
+	
 	public V[] values() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
+	
 	public V min() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
-	@Override
+	
 	public V max() {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
+	
 	public V[] lessThan(K key) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
+	
 	public V[] greaterThan(K key) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
-	@Override
+	
 	public int size() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
-	@Override
+	
 	public int height() {
-		// TODO Auto-generated method stub
+
 		return 0;
 	}
 
-	@Override
+	
 	public void display() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
-	@Override
+	
 	public boolean isFullTree() {
-		// TODO Auto-generated method stub
+
+		
 		return false;
 	}
 
@@ -99,7 +101,18 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			this.key = key;
 			this.value = value;	
 		}
-		
+		public K getKey() {
+			return key;
+		}
+		public void setKey(K desiredKey) {
+			this.key = desiredKey;
+		}
+		public V getValue() {
+			return value;
+		}
+		public void setValue(V desiredValue) {
+			this.value = desiredValue;
+		}
 		
 	}
 	
