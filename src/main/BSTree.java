@@ -2,7 +2,7 @@ package main;
 
 import java.util.List;
 
-public class BSTree<V,K> implements BSTreeInterface<V,K> {
+public class BSTree<V,K extends Comparable<? super K > > implements BSTreeInterface<V,K> {
 
 	@Override
 	public V get() {

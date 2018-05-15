@@ -1,7 +1,7 @@
 package main;
 
 
-public interface BSTreeInterface<V,K> {
+public interface BSTreeInterface<V,K extends Comparable<? super K >> {
 	/**
 	 * Returns the value associated with ​key​.
 	 * @return value
