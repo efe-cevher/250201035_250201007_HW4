@@ -3,8 +3,7 @@ package main;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
-<<<<<<< HEAD
-=======
+	
 	private Node<K,V>[] nodeArray;
 	private int numOfEntries;
 	
@@ -12,9 +11,8 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public VanillaBST() {
 		nodeArray = (Node<K,V>[])new Object[128];
 	}
+
 	
-	@Override
->>>>>>> master
 	public V get(K key) {
 		
 		return null;
@@ -103,7 +101,18 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			this.key = key;
 			this.value = value;	
 		}
-		
+		public K getKey() {
+			return key;
+		}
+		public void setKey(K desiredKey) {
+			this.key = desiredKey;
+		}
+		public V getValue() {
+			return value;
+		}
+		public void setValue(V desiredValue) {
+			this.value = desiredValue;
+		}
 		
 	}
 	

@@ -1,6 +1,5 @@
 package main;
 
-import java.util.List;
 
 public interface BST<K extends Comparable<K>,V> {
 	/**
