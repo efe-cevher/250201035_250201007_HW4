@@ -4,6 +4,14 @@ import java.util.List;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
+	private Node<K,V>[] nodeArray;
+	private int numOfEntries;
+	
+	@SuppressWarnings("unchecked")
+	public VanillaBST() {
+		nodeArray = (Node<K,V>[])new Object[128];
+	}
+	
 	@Override
 	public V get() {
 		// TODO Auto-generated method stub
@@ -82,4 +90,22 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		return false;
 	}
 
+	private class Node<K,V> {
+		
+		private V value;
+		private K key;
+		
+		public Node(K key, V value) 
+		{
+			this.key = key;
+			this.value = value;	
+		}
+		
+		
+	}
+	
+	
+	
 }
+
+
