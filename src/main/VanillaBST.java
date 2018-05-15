@@ -3,6 +3,18 @@ package main;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
+<<<<<<< HEAD
+=======
+	private Node<K,V>[] nodeArray;
+	private int numOfEntries;
+	
+	@SuppressWarnings("unchecked")
+	public VanillaBST() {
+		nodeArray = (Node<K,V>[])new Object[128];
+	}
+	
+	@Override
+>>>>>>> master
 	public V get(K key) {
 		
 		return null;
@@ -81,4 +93,22 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		return false;
 	}
 
+	private class Node<K,V> {
+		
+		private V value;
+		private K key;
+		
+		public Node(K key, V value) 
+		{
+			this.key = key;
+			this.value = value;	
+		}
+		
+		
+	}
+	
+	
+	
 }
+
+
