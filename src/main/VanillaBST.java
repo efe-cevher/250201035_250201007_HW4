@@ -80,6 +80,26 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		if(targetIndex != -1)
 		{
 			nodeArray[targetIndex] = null;
+			
+			if (nodeArray[targetIndex*2+1] == null)
+			{
+				for (int i = targetIndex; i <= nodeArray.length; i++)
+				{
+				    nodeArray[i+1] = nodeArray[i];
+				}
+			}
+			Node<K,V> currentNode = nodeArray[targetIndex];
+			V closestVal = currentNode.getValue();
+			
+			while (currentNode != null)
+	        {	
+				closestVal = currentNode.getValue();
+				targetIndex = targetIndex*2+2;
+				currentNode = nodeArray[targetIndex];
+	        }
+			
+			
+			
 		}
 		else
 		{
@@ -129,8 +149,18 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	
 	public V min() {
+		int currentIndex = 0;
+		Node<K,V> currentNode = nodeArray[currentIndex];
+		V minVal = currentNode.getValue();
 		
-		return null;
+		while (currentNode != null)
+        {	
+			minVal = currentNode.getValue();
+			currentIndex = currentIndex*2+1;
+			currentNode = nodeArray[currentIndex];
+        }
+
+		return minVal;
 	}
 
 	
