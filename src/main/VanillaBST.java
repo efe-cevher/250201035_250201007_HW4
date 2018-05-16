@@ -158,22 +158,33 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public V min() {
 		int currentIndex = 0;
 		Node<K,V> currentNode = nodeArray[currentIndex];
-		V minVal = currentNode.getValue();
+		V value = currentNode.getValue();
 		
 		while (currentNode != null)
         {	
-			minVal = currentNode.getValue();
+			value = currentNode.getValue();
 			currentIndex = currentIndex*2+1;
 			currentNode = nodeArray[currentIndex];
         }
 
-		return minVal;
+		return value;
 	}
 
 	
 	public V max() {
+		
+		int currentIndex = 0;
+		Node<K,V> currentNode = nodeArray[currentIndex];
+		V value = currentNode.getValue();
+		
+		while (currentNode != null)
+        {
+			value = currentNode.getValue();
+			currentIndex = currentIndex*2+2;
+			currentNode = nodeArray[currentIndex];
+        }
 
-		return null;
+		return value;
 	}
 
 	
