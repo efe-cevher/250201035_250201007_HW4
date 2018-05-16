@@ -85,7 +85,13 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 	public void remove(K key) {
 		
+		int currentIndex = 0;
 		int targetIndex = getNodeIndex(key);
+	    int currentIndex, parentIndex, temp, oldIndex, newIndex;
+	    <Integer> oldlist = new ArrayUnorderedList<Integer>();
+	    ArrayUnorderedList<Integer> newlist = new ArrayUnorderedList<Integer>();
+	    ArrayUnorderedList<Integer> templist = new ArrayUnorderedList<Integer>();
+	    Iterator<Integer> oldIt, newIt;
 		
 		if(targetIndex != -1)
 		{
@@ -101,7 +107,43 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			
 			else if ((nodeArray[targetIndex*2+1] != null) && (nodeArray[targetIndex*2+2] == null)) 
 			{
-				
+		         // fill newlist with indices of nodes that will replace 
+		         // the corresponding indices in oldlist
+		         
+		         // fill newlist
+		         currentIndex = targetIndex*2+1;
+		         templist.addToRear(new Integer(currentIndex));
+		         while (!templist.isEmpty()) {
+		            currentIndex = ((Integer)templist.removeFirst()).intValue();
+		            newlist.addToRear(new Integer(currentIndex));
+		            if ((currentIndex*2+2) <= (Math.pow(2,height)-2)) {
+		               templist.addToRear(new Integer(currentIndex*2+1));
+		               templist.addToRear(new Integer(currentIndex*2+2));
+		            }
+		         }
+		         
+		         // fill oldlist
+		         currentIndex = targetIndex;
+		         templist.addToRear(new Integer(currentIndex));
+		         while (!templist.isEmpty()) {
+		            currentIndex = ((Integer)templist.removeFirst()).intValue();
+		            oldlist.addToRear(new Integer(currentIndex));
+		            if ((currentIndex*2+2) <= (Math.pow(2,height)-2)) {
+		               templist.addToRear(new Integer(currentIndex*2+1));
+		               templist.addToRear(new Integer(currentIndex*2+2));
+		            }
+		         }
+		         
+		         // do replacement
+		         oldIt = oldlist.iterator();
+		         newIt = newlist.iterator();
+		         while (newIt.hasNext()) {
+		            oldIndex = oldIt.next();
+		            newIndex = newIt.next();
+		            tree[oldIndex] = tree[newIndex];
+		            tree[newIndex] = null;
+		         }         
+		      }
 				
 				
 			}
@@ -189,7 +231,12 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	
 	public V[] lessThan(K key) {
-
+		int currentIndex = 0;
+		int targetIndex = getNodeIndex(key);
+		
+				
+				
+		
 		return null;
 	}
 
