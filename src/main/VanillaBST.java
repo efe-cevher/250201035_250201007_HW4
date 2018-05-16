@@ -1,13 +1,15 @@
 package main;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	
 	private Node<K,V>[] nodeArray;
-	private int numOfEntries;
+	private int size;
+	private int maxIndex;
 	
 	@SuppressWarnings("unchecked")
 	public VanillaBST() {
@@ -48,7 +50,11 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	public void add(K key,V value) {
 		
-		Node<K,V> newNode =new Node<K, V>(key, value);
+		if (nodeArray.length < maxIndex*2+3)
+			Arrays.copyOf(nodeArray,maxIndex*2+3);
+		
+		
+		Node<K,V> newNode = new Node<K, V>(key, value);
 		int currentIndex = 0;
 		boolean added = false;
         while (!added)
@@ -57,6 +63,8 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
               if (nodeArray[currentIndex*2+1] == null) {
                  nodeArray[currentIndex*2+1] = newNode;
                  added = true;
+                 if (currentIndex*2+1 > maxIndex)
+                     maxIndex = currentIndex*2+1;
               }
               else
                  currentIndex = currentIndex*2+1;
@@ -65,13 +73,15 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
               if (nodeArray[currentIndex*2+2] == null) {
                  nodeArray[currentIndex*2+2] = newNode;
                  added = true;
+                 if (currentIndex*2+2 > maxIndex)
+                     maxIndex = currentIndex*2+2;
               }
               else
                  currentIndex = currentIndex*2+2;
            }
            
         }
-        numOfEntries++;	
+        size++;	
 	}
 	public void remove(K key) {
 		
@@ -79,35 +89,32 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		
 		if(targetIndex != -1)
 		{
-			nodeArray[targetIndex] = null;
-			
-			if (nodeArray[targetIndex*2+1] == null)
+			if ((targetIndex*2+1 >= nodeArray.length) || (targetIndex*2+2 >= nodeArray.length))
 			{
-				for (int i = targetIndex; i <= nodeArray.length; i++)
-				{
-				    nodeArray[i+1] = nodeArray[i];
-				}
+				nodeArray[targetIndex] = null;
 			}
-			Node<K,V> currentNode = nodeArray[targetIndex];
-			V closestVal = currentNode.getValue();
-			
-			while (currentNode != null)
-	        {	
-				closestVal = currentNode.getValue();
-				targetIndex = targetIndex*2+2;
-				currentNode = nodeArray[targetIndex];
-	        }
+			else if ((nodeArray[targetIndex*2+1] == null) && (nodeArray[targetIndex*2+2] == null))
+			{    
+				nodeArray[targetIndex] = null;
+			}
 			
 			
+			else if ((nodeArray[targetIndex*2+1] != null) && (nodeArray[targetIndex*2+2] == null)) 
+			{
+				
+				
+				
+			}
 			
 		}
+		
 		else
 		{
 			throw new e NoSuchElementException;
 		}
 
-		
 	}
+	
 
 	public void update(K key, V value) {
 		
