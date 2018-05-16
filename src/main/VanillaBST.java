@@ -5,7 +5,7 @@ import java.util.List;
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	private Node<K,V>[] nodeArray;
-	private int numOfEntries;
+	private int size;
 	
 	@SuppressWarnings("unchecked")
 	public VanillaBST() {
@@ -98,10 +98,22 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		public Node(K key, V value) 
 		{
 			this.key = key;
-			this.value = value;	
+			this.value = value;
+			
+		}
+		public K getKey() {
+			
+			return key;
 		}
 		
-		
+		public V getValue() {
+			
+			return value;
+		}
+		public V setValue(V value) {
+			
+			this.value = value;
+		}
 	}
 	
 	
