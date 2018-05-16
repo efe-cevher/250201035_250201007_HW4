@@ -1,5 +1,6 @@
 package main;
 
+import java.util.List;
 
 public interface BST<K extends Comparable<K>,V> {
 	/**
@@ -26,12 +27,12 @@ public interface BST<K extends Comparable<K>,V> {
 	 * Returns all the keys in the tree.
 	 * @return list of keys
 	 */
-	public K[] keys();
+	public List<K> keys();
 	/**
 	 * Returns all the values in the tree.
 	 * @return list of values
 	 */
-	public V[] values();
+	public List<V> values();
 	/**
 	 * Returns the value associated with the smallest key.
 	 * @return minimum value

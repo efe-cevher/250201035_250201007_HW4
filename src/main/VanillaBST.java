@@ -1,5 +1,7 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
@@ -28,7 +30,15 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
                  currentIndex = currentIndex*2+2;
            }
         }
-		return currentIndex;
+		if (found)
+		{
+			return currentIndex;
+		}
+		else
+		{
+			return -1;
+		}
+		
 	}
 	public V get(K key) {
 		
@@ -65,6 +75,17 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 	public void remove(K key) {
 		
+		int targetIndex = getNodeIndex(key);
+		
+		if(targetIndex != -1)
+		{
+			nodeArray[targetIndex] = null;
+		}
+		else
+		{
+			throw new e NoSuchElementException;
+		}
+
 		
 	}
 
@@ -74,16 +95,37 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	
-	public K[] keys() {
-
-		return null;
+	public List<K> keys() {
+		
+		List<K> keyList = new ArrayList<K>();
+		
+		for(int i = 0; i < nodeArray.length; i++) 
+		{
+			if (nodeArray[i] != null)
+			{
+				keyList.add(nodeArray[i].getKey());
+			}
+		}
+			
+		return keyList;
 	}
 
 	
-	public V[] values() {
+	public List<V> values() {
 
-		return null;
+		List<V> valueList = new ArrayList<V>();
+		
+		for(int i = 0; i < nodeArray.length; i++) 
+		{
+			if (nodeArray[i] != null)
+			{
+				valueList.add(nodeArray[i].getValue());
+			}	
+		}
+		
+		return valueList;	
 	}
+	
 
 	
 	public V min() {
