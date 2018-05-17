@@ -325,9 +325,49 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		return (int)(Math.log(maxIndex + 1) / Math.log(2)) + 1;
 	}
 
-	
 	public void display() {
+		System.out.println("Root: " + nodeArray[0].display());
+		display(0);
 		
+	}
+	private void display(int currentIndex) {
+		
+		if (currentIndex*2 < maxIndex) {
+			if (nodeArray[currentIndex*2+1] != null) {
+				System.out.print("|");
+				for (int i=0;i<3;i++) {
+					System.out.print("-");
+				}
+					
+				System.out.println("Left: " + nodeArray[currentIndex*2+1].display());
+				
+			}
+			else {
+				System.out.print("|");
+				for (int i=0;i<3;i++) {
+					System.out.print("-");
+				}
+				System.out.println("Left: -");
+			}
+			currentIndex = currentIndex*2+1;
+			display(currentIndex);
+			if (nodeArray[currentIndex*2+2] != null) {
+				System.out.print("\\");
+				for (int i=0;i<3;i++) {
+					System.out.print("-");
+				}
+				System.out.println("Right: " + nodeArray[currentIndex*2+2].display());
+				
+			}
+			else {
+				System.out.print("\\");
+				for (int i=0;i<3;i++) {
+					System.out.print("-");
+				}
+				System.out.println("Right: -");
+			}currentIndex = currentIndex*2+2;
+			display(currentIndex);
+		}
 		
 	}
 
@@ -360,11 +400,13 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		public void setValue(V desiredValue) {
 			this.value = desiredValue;
 		}
-		
+		public String display() {
+			String str = "(" + key + ", " + value + ")";
+			return str;
+			
+		}
+		                  
 	}
-	
-	
-	
 }
 
 
