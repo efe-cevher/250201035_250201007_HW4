@@ -47,12 +47,12 @@ public interface BST<K extends Comparable<K>,V> {
 	 * Returns all the values associated with a smaller key than ​key​.
 	 * @return list of values
 	 */
-	public V[] lessThan(K key);
+	public List<V> lessThan(K key);
 	/**
 	 * Returns all the values associated with a larger key than ​key​.
 	 * @return list of values
 	 */
-	public V[] greaterThan(K key);
+	public List<V> greaterThan(K key);
 	/**
 	 * Returns the number of values (or keys) in the tree.
 	 * @return an integer of size

@@ -288,32 +288,41 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	
-	public V[] lessThan(K key) {
-		int currentIndex = 0;
-		int targetIndex = getNodeIndex(key);
-		
-				
-				
-		
-		return null;
+	public List<V> lessThan(K key) {
+		ArrayList<V> less = new ArrayList<V>();
+		int currentIndex, targetIndex = getNodeIndex(key);
+		for(currentIndex = 0; currentIndex < maxIndex ; currentIndex++) {
+			if ((nodeArray[currentIndex].getKey().compareTo(nodeArray[targetIndex].getKey()))==-1) {
+				less.add(nodeArray[currentIndex].getValue());
+			}
+			
+		}
+		return less;
 	}
 
 	
-	public V[] greaterThan(K key) {
-
-		return null;
+	public List<V> greaterThan(K key) {
+		ArrayList<V> greater = new ArrayList<V>();
+		int currentIndex, targetIndex = getNodeIndex(key);
+		for(currentIndex = 0; currentIndex < maxIndex ; currentIndex++) {
+			if ((nodeArray[currentIndex].getKey().compareTo(nodeArray[targetIndex].getKey()))==1) {
+				greater.add(nodeArray[currentIndex].getValue());
+			}
+			
+		}
+		return greater;
 	}
 
 	
 	public int size() {
 
-		return 0;
+		return size;
 	}
 
 	
 	public int height() {
 
-		return 0;
+		return (int)(Math.log(maxIndex + 1) / Math.log(2)) + 1;
 	}
 
 	

@@ -11,6 +11,7 @@ public class App {
 		Bst.add(3, "orta​");
 		Bst.add(4, "orta​");
 		Bst.add(2, "orta​");
+		Bst.display();
 	}
 
 }
