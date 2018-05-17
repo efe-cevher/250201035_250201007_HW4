@@ -3,6 +3,7 @@ package main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
@@ -103,56 +104,15 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			{    
 				nodeArray[targetIndex] = null;
 			}
-			
-			
+			// If node only has left child
 			else if ((nodeArray[targetIndex*2+1] != null) && (nodeArray[targetIndex*2+2] == null)) 
 			{
-		         // fill newlist with indices of nodes that will replace 
-		         // the corresponding indices in oldlist
-		         
-		         // fill newlist
-		         currentIndex = targetIndex*2+1;
-		         templist.addToRear(new Integer(currentIndex));
-		         while (!templist.isEmpty()) {
-		            currentIndex = ((Integer)templist.removeFirst()).intValue();
-		            newlist.addToRear(new Integer(currentIndex));
-		            if ((currentIndex*2+2) <= (Math.pow(2,height)-2)) {
-		               templist.addToRear(new Integer(currentIndex*2+1));
-		               templist.addToRear(new Integer(currentIndex*2+2));
-		            }
-		         }
-		         
-		         // fill oldlist
-		         currentIndex = targetIndex;
-		         templist.addToRear(new Integer(currentIndex));
-		         while (!templist.isEmpty()) {
-		            currentIndex = ((Integer)templist.removeFirst()).intValue();
-		            oldlist.addToRear(new Integer(currentIndex));
-		            if ((currentIndex*2+2) <= (Math.pow(2,height)-2)) {
-		               templist.addToRear(new Integer(currentIndex*2+1));
-		               templist.addToRear(new Integer(currentIndex*2+2));
-		            }
-		         }
-		         
-		         // do replacement
-		         oldIt = oldlist.iterator();
-		         newIt = newlist.iterator();
-		         while (newIt.hasNext()) {
-		            oldIndex = oldIt.next();
-		            newIndex = newIt.next();
-		            tree[oldIndex] = tree[newIndex];
-		            tree[newIndex] = null;
-		         }         
-		      }
-				
-				
+		       
 			}
-			
-		}
 		
 		else
 		{
-			throw new e NoSuchElementException;
+			throw new NoSuchElementException("There is no value with given key");
 		}
 
 	}
