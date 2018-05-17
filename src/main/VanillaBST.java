@@ -15,7 +15,6 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	@SuppressWarnings("unchecked")
 	public VanillaBST() {
 		nodeArray = (Node<K,V>[])new Node[1];
-		System.out.println(nodeArray.length);
 		maxIndex = 1;
 
 	}
@@ -56,7 +55,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		
 		if (nodeArray.length < maxIndex*2+3)
 		{
-			Arrays.copyOf(nodeArray,maxIndex*2+3);
+			nodeArray = Arrays.copyOf(nodeArray,maxIndex*2+3);
 		}
 		
 		
@@ -64,8 +63,12 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		int currentIndex = 0;
 		boolean added = false;
         while (!added)
-        {
-           if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) {
+        {if (maxIndex == 1){
+        	nodeArray[currentIndex] = newNode;
+        	added = true;
+        	maxIndex += 1; 
+        }
+        	else if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) {
               if (nodeArray[currentIndex*2+1] == null) {
                  nodeArray[currentIndex*2+1] = newNode;
                  added = true;
