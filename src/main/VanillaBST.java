@@ -14,7 +14,10 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	
 	@SuppressWarnings("unchecked")
 	public VanillaBST() {
-		nodeArray = (Node<K,V>[])new Object[128];
+		nodeArray = (Node<K,V>[])new Node[1];
+		System.out.println(nodeArray.length);
+		maxIndex = 1;
+
 	}
 
 	private int getNodeIndex(K key) {
@@ -52,7 +55,9 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public void add(K key,V value) {
 		
 		if (nodeArray.length < maxIndex*2+3)
+		{
 			Arrays.copyOf(nodeArray,maxIndex*2+3);
+		}
 		
 		
 		Node<K,V> newNode = new Node<K, V>(key, value);
