@@ -46,8 +46,8 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		
 	}
 	public V get(K key) {
-		
-		return null;
+		int targetIndex = getNodeIndex(key);
+		return nodeArray[targetIndex].getValue();
 	}
 	
 
@@ -215,7 +215,9 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	public void update(K key, V value) {
-		
+		int targetIndex = getNodeIndex(key);
+		Node<K, V> newNode = nodeArray[targetIndex];
+		newNode.setValue(value);
 		
 	}
 
