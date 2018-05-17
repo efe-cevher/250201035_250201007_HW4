@@ -84,39 +84,127 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
         }
         size++;	
 	}
+	
 	public void remove(K key) {
 		
-		int currentIndex = 0;
 		int targetIndex = getNodeIndex(key);
-	    int currentIndex, parentIndex, temp, oldIndex, newIndex;
-	    <Integer> oldlist = new ArrayUnorderedList<Integer>();
-	    ArrayUnorderedList<Integer> newlist = new ArrayUnorderedList<Integer>();
-	    ArrayUnorderedList<Integer> templist = new ArrayUnorderedList<Integer>();
-	    Iterator<Integer> oldIt, newIt;
 		
-		if(targetIndex != -1)
+		if (targetIndex != -1)
 		{
-			if ((targetIndex*2+1 >= nodeArray.length) || (targetIndex*2+2 >= nodeArray.length))
-			{
-				nodeArray[targetIndex] = null;
-			}
-			else if ((nodeArray[targetIndex*2+1] == null) && (nodeArray[targetIndex*2+2] == null))
-			{    
-				nodeArray[targetIndex] = null;
-			}
-			// If node only has left child
-			else if ((nodeArray[targetIndex*2+1] != null) && (nodeArray[targetIndex*2+2] == null)) 
-			{
-		       
-			}
-		
+			SearchRemove(key,targetIndex);
+		}
 		else
 		{
-			throw new NoSuchElementException("There is no value with given key");
+			throw new NoSuchElementException("There is no element with given key");
 		}
-
+		
 	}
 	
+	
+	private void remove(int targetIndex) {
+ 
+	
+		// if its a leaf
+		if (isLeaf(targetIndex))
+		{
+			nodeArray[targetIndex] = null;
+			size--;
+		}
+
+		// if node only has left child
+		else if ((nodeArray[targetIndex*2+1] != null) && (nodeArray[targetIndex*2+2] == null)) 
+		{
+	       nodeArray[targetIndex] = nodeArray[targetIndex*2+1];
+		}
+		// if node only has right child
+		else if ((nodeArray[targetIndex*2+1] == null) && (nodeArray[targetIndex*2+2] != null)) 
+		{
+			targetIndex = 2*targetIndex+2;
+			size--;
+		}
+		// if node has two children
+		else
+		{
+			int index = SearchInorderSuccessor(targetIndex);
+			nodeArray[targetIndex] = nodeArray[index];
+			
+			if (nodeArray[index*2+2] != null)
+			{
+				nodeArray[index] = nodeArray[index*2+2];
+				nodeArray[index*2+2] = null;
+			}
+			
+			if (!isLeaf(index))
+			{
+				nodeArray[index] = null;
+			}
+			
+			size--;
+			
+		}				
+	}
+		
+	private boolean SearchRemove(K key, int targetIndex){
+		
+		if(nodeArray[targetIndex] != null && targetIndex <= maxIndex)
+		{
+			if(key.compareTo((nodeArray[targetIndex].getKey()) ) == 0)
+			{
+				remove(targetIndex);
+				return true;
+			}
+			else if(key.compareTo((nodeArray[targetIndex].getKey()) ) < 0)
+			{
+				targetIndex = targetIndex*2 + 1;
+				SearchRemove(key, targetIndex);
+			}
+			else
+			{
+				targetIndex = targetIndex*2 + 2;
+				SearchRemove(key, targetIndex);
+			}
+		}
+		
+		return false;
+	}
+	
+	
+	private int SearchInorderSuccessor(int targetIndex)
+	{
+		if (nodeArray[targetIndex*2+1] != null)
+		{
+			targetIndex = targetIndex*2+1;
+			
+			if (isLeaf(targetIndex*2+1))
+			{
+				return targetIndex;
+			}
+			
+			return SearchInorderSuccessor(targetIndex);
+		}
+		else
+		{
+			return targetIndex;
+		}
+		
+	}
+
+	private boolean isLeaf(int targetIndex) 
+	{
+		if ((targetIndex*2+1 >= nodeArray.length) || (targetIndex*2+2 >= nodeArray.length))
+		{
+			return true;
+		
+		}
+		else if ((nodeArray[targetIndex*2+1] == null) && (nodeArray[targetIndex*2+2] == null))
+		{    
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 
 	public void update(K key, V value) {
 		
