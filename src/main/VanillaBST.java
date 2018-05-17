@@ -142,7 +142,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 				nodeArray[index*2+2] = null;
 			}
 			
-			if (!isLeaf(index))
+			if (isLeaf(index))
 			{
 				nodeArray[index] = null;
 			}
