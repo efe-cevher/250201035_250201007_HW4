@@ -327,46 +327,66 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	public void display() {
 		System.out.println("Root: " + nodeArray[0].display());
-		display(0);
+		
+		display(0,0);
 		
 	}
-	private void display(int currentIndex) {
+	private void display(int currentIndex, int k) {
 		
-		if (currentIndex*2 < maxIndex) {
+		if (!isLeaf(currentIndex)) {
+			
 			if (nodeArray[currentIndex*2+1] != null) {
+				
 				System.out.print("|");
-				for (int i=0;i<3;i++) {
-					System.out.print("-");
+				for (int i=0;i<k;i++) {
+					System.out.print(" ");
 				}
+				if(k>0)
+					System.out.print("┗━");
+				else
+					System.out.print("━━━");
 					
 				System.out.println("Left: " + nodeArray[currentIndex*2+1].display());
 				
 			}
 			else {
 				System.out.print("|");
-				for (int i=0;i<3;i++) {
-					System.out.print("-");
+				for (int i=0;i<k;i++) {
+					System.out.print(" ");
 				}
+				if(k>0)
+					System.out.print("┗━");
+				else
+					System.out.print("━━━");
 				System.out.println("Left: -");
 			}
-			currentIndex = currentIndex*2+1;
-			display(currentIndex);
+			
+			display(currentIndex*2+1,k+3);
 			if (nodeArray[currentIndex*2+2] != null) {
-				System.out.print("\\");
-				for (int i=0;i<3;i++) {
-					System.out.print("-");
+				
+				System.out.print("|");
+				for (int i=0;i<k;i++) {
+					System.out.print(" ");
 				}
+				if(k>0)
+					System.out.print("┗━");
+				else
+					System.out.print("━━━");
 				System.out.println("Right: " + nodeArray[currentIndex*2+2].display());
 				
 			}
 			else {
 				System.out.print("\\");
-				for (int i=0;i<3;i++) {
-					System.out.print("-");
+				for (int i=0;i<k;i++) {
+					System.out.print(" ");
 				}
+				if(k>0)
+					System.out.print("-");
+				else
+					System.out.print("━━━");
 				System.out.println("Right: -");
 			}currentIndex = currentIndex*2+2;
-			display(currentIndex);
+			display(currentIndex,k+3);
 		}
 		
 	}

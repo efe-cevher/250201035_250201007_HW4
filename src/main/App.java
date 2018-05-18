@@ -11,10 +11,15 @@ public class App {
 		Bst.add(15, "15");
 		Bst.add(3, "3");
 		Bst.add(7, "7");
+		Bst.add(6, "6");
+		Bst.add(4, "4");
+		
+		Bst.add(8, "8");
 		Bst.add(12, "12");
 		Bst.add(17, "17");
+		Bst.add(18, "18");
+		Bst.display();
 		
-		System.out.println(Bst.lessThan(17).size());
 	}
 
 }
