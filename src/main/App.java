@@ -21,7 +21,8 @@ public class App {
 		Bst.remove(5);
 		System.out.println(Bst.height());
 		Bst.display();
-		
+		System.out.println(Bst.isFullTree());
+
 	}
 
 }

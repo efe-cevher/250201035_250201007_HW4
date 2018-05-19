@@ -334,8 +334,15 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	
 	public int height() {
+		int height;
+		if (size==1) {
+			height = 1;
+		}
+		else {
+			height = (int)(Math.log(maxIndex + 1) / Math.log(2)) + 1;
+		}
 
-		return (int)(Math.log(maxIndex + 1) / Math.log(2)) + 1;
+		return height;
 	}
 
 	public void display() {
@@ -406,9 +413,16 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 
 	
 	public boolean isFullTree() {
-
+		boolean isFull = false;
+		int total = 0;
+		for (int i = 0 ; i < height() ; i++ ) {
+			total += Math.pow(2, i);
+		}
+		if (total == size()) {
+			isFull = true;
+		}
 		
-		return false;
+		return isFull;
 	}
 
 	private class Node<K,V> {
