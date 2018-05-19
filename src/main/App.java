@@ -4,24 +4,24 @@ public class App {
 
 	public static void main(String[] args) {
 		
-		BST<Integer,String> Bst = new VanillaBST<Integer,String>();
+		BST<String,Integer> StockList = new VanillaBST<String,Integer>();
 		
-		Bst.add(10, "10");
-		Bst.add(5, "5");
-		Bst.add(15, "15");
-		Bst.add(3, "3");
-		Bst.add(7, "7");
-		Bst.add(6, "6");
-		Bst.add(4, "4");
+		StockList.add("tea", 17);
+		StockList.add("towel", 24);
+		StockList.add("juice", 5);
+		StockList.add("glass", 36);
+		StockList.add("coffee", 21);
+		StockList.add("tomato", 3);
 		
-		Bst.add(8, "8");
-		Bst.add(12, "12");
-		Bst.add(17, "17");
-		Bst.add(18, "18");
-		Bst.remove(5);
-		System.out.println(Bst.height());
-		Bst.display();
-		System.out.println(Bst.isFullTree());
+		StockList.display();
+		
+		StockList.remove("tea");
+		
+		System.out.println();
+		
+		StockList.display();
+		
+		
 
 	}
 
