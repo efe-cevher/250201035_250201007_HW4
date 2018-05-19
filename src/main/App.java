@@ -18,6 +18,8 @@ public class App {
 		Bst.add(12, "12");
 		Bst.add(17, "17");
 		Bst.add(18, "18");
+		Bst.remove(5);
+		System.out.println(Bst.height());
 		Bst.display();
 		
 	}

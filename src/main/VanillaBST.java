@@ -16,7 +16,20 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public VanillaBST() {
 		nodeArray = (Node<K,V>[])new Node[1];
 		maxIndex = 1;
-
+	}
+	@SuppressWarnings("unchecked")
+	public VanillaBST(List<K> keyList, List<V> valueList) {
+		if(keyList.size() == valueList.size()) 
+		{
+			nodeArray = (Node<K,V>[])new Node[keyList.size()];
+			for(int i=0; i<keyList.size();i++)
+			{
+				K key = keyList.get(i);
+				V value = valueList.get(i);
+				Node<K,V> newNode = new Node<K, V>(key, value);
+				
+			}
+		}
 	}
 
 	private int getNodeIndex(K key) {
@@ -133,7 +146,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		// if node has two children
 		else
 		{
-			int index = SearchInorderSuccessor(targetIndex);
+			int index = SearchInorderSuccessor(targetIndex*2+2);
 			nodeArray[targetIndex] = nodeArray[index];
 			
 			if (nodeArray[index*2+2] != null)
