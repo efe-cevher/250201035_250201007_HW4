@@ -37,26 +37,30 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		boolean found = false;
 		while (!found)
         {	
-			if (key.compareTo((nodeArray[currentIndex].getKey()) ) == 0){
-				found = true;
+			if(nodeArray[currentIndex] != null)
+			{
+			
+				if (key.compareTo((nodeArray[currentIndex].getKey()) ) == 0)
+				{
+					found = true;
+				}
+				else if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) 
+	            {
+	                 currentIndex = currentIndex*2+1;
+	            }
+	            else 
+	            {
+	                 currentIndex = currentIndex*2+2;
+	            }
+			
 			}
-			else if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) 
-           {
-                 currentIndex = currentIndex*2+1;
-           }
-           else {
-                 currentIndex = currentIndex*2+2;
-           }
+			else {
+				currentIndex = -1;
+				break;
+			}
+			
         }
-		if (found)
-		{
-			return currentIndex;
-		}
-		else
-		{
-			return -1;
-		}
-		
+		return currentIndex;
 	}
 	public V get(K key) {
 		int targetIndex = getNodeIndex(key);
