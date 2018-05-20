@@ -5,9 +5,9 @@ import java.util.List;
 public interface BST<K extends Comparable<K>,V> {
 	/**
 	 * Returns the value associated with ​key​.
-	 * @return value
+	 * @return value, if value with given key do not exist returns null
 	 */
-	public V get(K key​);
+	public V get(K key);
 	/**
 	 * Adds ​value​ to the tree with respect to ​key​.
 	 */

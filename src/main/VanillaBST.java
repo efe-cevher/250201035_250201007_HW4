@@ -115,7 +115,10 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 	public V get(K key) {
 		int targetIndex = getNodeIndex(key);
-		return nodeArray[targetIndex].getValue();
+		if (targetIndex != -1)
+			return nodeArray[targetIndex].getValue();
+		else
+			return null;
 	}
 	
 
@@ -493,7 +496,6 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		return greater;
 	}
 
-	
 	private ArrayList<V> parentGreater(int index) {
 		ArrayList<V> greater = new ArrayList<V>(),greaterLeft = new ArrayList<V>(),greaterRight = new ArrayList<V>();
 		int currentIndex = getParent(index);
@@ -577,13 +579,12 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 				
 				
 				for (int i=0;i<k;i++) {
-					System.out.print(" ");
+					System.out.print("┃  ");
 				}
-				if(k>0)
-					System.out.print("┗━");
-				else
-					System.out.print("┗━━");
-					
+				
+				
+				
+				System.out.print("┣━━");
 				System.out.println("Left: " + nodeArray[currentIndex*2+1].display());
 				
 			}
@@ -592,39 +593,33 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 				for (int i=0;i<k;i++) {
 					System.out.print(" ");
 				}
-				if(k>0)
-					System.out.print("┗━");
-				else
-					System.out.print("┗━━");
+					System.out.print("┣━━");
+					
 				System.out.println("Left: -");
 			}
 			
-			display(currentIndex*2+1,k+3);
+			display(currentIndex*2+1,k+1);
 			if (nodeArray[currentIndex*2+2] != null) {
 				
 				
 				for (int i=0;i<k;i++) {
-					System.out.print(" ");
+					System.out.print("┃  ");
 				}
-				if(k>0)
-					System.out.print("┗━");
-				else
 					System.out.print("┗━━");
+
 				System.out.println("Right: " + nodeArray[currentIndex*2+2].display());
 				
 			}
 			else {
 				
 				for (int i=0;i<k;i++) {
-					System.out.print(" ");
+					System.out.print("┃  ");
 				}
-				if(k>0)
-					System.out.print("┗━");
-				else
 					System.out.print("┗━━");
+	
 				System.out.println("Right: -");
 			}currentIndex = currentIndex*2+2;
-			display(currentIndex,k+3);
+			display(currentIndex,k+1);
 		}
 		
 	}
