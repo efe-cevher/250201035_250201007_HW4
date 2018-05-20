@@ -33,7 +33,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 				
 			}
 			insertionSort(tmpArray);
-			balance(tmpArray);
+			balancedAdd(tmpArray);
 			
 		}
 		else 
@@ -41,7 +41,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			throw new IllegalArgumentException("Key list and Value list does not match");
 		}
 	}
-	private void balance(Node<K,V>[] arr) {
+	private void balancedAdd(Node<K,V>[] arr) {
 		int n = arr.length;
 		int mid = n/2;
 
@@ -54,16 +54,14 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		if  (left.length > 0 )
 		{
 			
-			balance(left);
+			balancedAdd(left);
 			
 		}
 		if (right.length > 0) {
-			balance(right);
+			balancedAdd(right);
 		}
 	
  }
-	
-	
 	
 	private void insertionSort(Node<K,V>[] arr)
 	{
@@ -85,8 +83,6 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 	
 		
-	
-
 	private int getNodeIndex(K key) {
 		int currentIndex = 0;
 		boolean found = false;
@@ -660,9 +656,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		public K getKey() {
 			return key;
 		}
-		public void setKey(K desiredKey) {
-			this.key = desiredKey;
-		}
+		
 		public V getValue() {
 			return value;
 		}

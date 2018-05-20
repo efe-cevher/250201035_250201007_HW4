@@ -21,20 +21,24 @@ public class App {
 		
 		
 		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
-		valueList.add(1);
+		valueList.add(2);
+		valueList.add(3);
+		valueList.add(4);
+		valueList.add(5);
+		valueList.add(6);
+		valueList.add(7);
+		valueList.add(8);
+
 	
 		
 		BST<String,Integer> StockList = new VanillaBST<String,Integer>(keyList,valueList);
 		
+		List<Integer> arr = StockList.greaterThan("e");
 		
-		
+		for(Integer element:arr)
+		{
+			System.out.println(element);
+		}
 		
 	
 		
