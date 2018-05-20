@@ -22,7 +22,8 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		if(keyList.size() == valueList.size()) 
 		{
 			Node<K,V>[] tmpArray = (Node<K,V>[])new Node[keyList.size()];
-			nodeArray = (Node<K,V>[])new Node[keyList.size()];
+			nodeArray = (Node<K,V>[])new Node[1];
+			maxIndex = 1;
 			for(int i=0; i<keyList.size();i++)
 			{
 				K key = keyList.get(i);
@@ -35,6 +36,10 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 			balance(tmpArray);
 			
 		}
+		else 
+		{
+			throw new IllegalArgumentException("Key list and Value list does not match");
+		}
 	}
 	private void balance(Node<K,V>[] arr) {
 		int n = arr.length;
@@ -46,9 +51,17 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		Node<K,V>[] left = Arrays.copyOfRange(arr, 0, mid);
 		Node<K,V>[] right = Arrays.copyOfRange(arr, mid+1, n);
 
-		balance(left);
-		balance(right);
-	}
+		if  (left.length > 0 )
+		{
+			
+			balance(left);
+			
+		}
+		if (right.length > 0) {
+			balance(right);
+		}
+	
+ }
 	
 	
 	
@@ -122,11 +135,15 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		int currentIndex = 0;
 		boolean added = false;
         while (!added)
-        {if (maxIndex == 1){
+        {
+        	
+        	if (maxIndex == 1)
+        	{
         	nodeArray[currentIndex] = newNode;
         	added = true;
         	maxIndex += 1; 
-        }
+            }
+        	
         	else if (key.compareTo((nodeArray[currentIndex].getKey()) ) < 0) {
               if (nodeArray[currentIndex*2+1] == null) {
                  nodeArray[currentIndex*2+1] = newNode;
@@ -137,8 +154,10 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
               else
                  currentIndex = currentIndex*2+1;
            }
-           else {
-              if (nodeArray[currentIndex*2+2] == null) {
+           else 
+           {
+              if (nodeArray[currentIndex*2+2] == null) 
+              {
                  nodeArray[currentIndex*2+2] = newNode;
                  added = true;
                  if (currentIndex*2+2 > maxIndex)

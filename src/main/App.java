@@ -15,40 +15,33 @@ public class App {
 		keyList.add("c");
 		keyList.add("d");
 		keyList.add("e");
+		keyList.add("f");
+		keyList.add("g");
+		keyList.add("h");
+		
 		
 		valueList.add(1);
 		valueList.add(1);
 		valueList.add(1);
 		valueList.add(1);
 		valueList.add(1);
-		
-
-		
-		
-		
-		
-		
+		valueList.add(1);
+		valueList.add(1);
+		valueList.add(1);
+		valueList.add(1);
+	
 		
 		BST<String,Integer> StockList = new VanillaBST<String,Integer>(keyList,valueList);
 		
 		
 		
 		
-		StockList.add("tea", 17);
-		StockList.add("towel", 24);
-		StockList.add("juice", 5);
-		StockList.add("glass", 36);
-		StockList.add("coffee", 21);
-		StockList.add("tomato", 3);
+	
 		
 		StockList.display();
 		
-		StockList.remove("tea");
-		
-		System.out.println();
-		
-		StockList.display();
-		
+
+
 		
 
 	}
