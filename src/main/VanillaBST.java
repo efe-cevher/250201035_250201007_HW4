@@ -497,7 +497,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	}
 
 	private ArrayList<V> parentGreater(int index) {
-		ArrayList<V> greater = new ArrayList<V>(),greaterLeft = new ArrayList<V>(),greaterRight = new ArrayList<V>();
+		ArrayList<V> greater = new ArrayList<V>(), greaterRight = new ArrayList<V>();
 		int currentIndex = getParent(index);
 		if ((currentIndex <= maxIndex)&&(-1 < currentIndex )) {
 			if (currentIndex == 0) {
@@ -638,6 +638,7 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 		return isFull;
 	}
 
+	@SuppressWarnings("hiding")
 	private class Node<K,V> {
 		
 		private V value;
