@@ -307,30 +307,187 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	
 	public List<V> lessThan(K key) {
 		ArrayList<V> less = new ArrayList<V>();
-		int currentIndex, targetIndex = getNodeIndex(key);
-		for(currentIndex = 0; currentIndex < maxIndex ; currentIndex++) {
-			if ((nodeArray[currentIndex].getKey().compareTo(nodeArray[targetIndex].getKey()))==-1) {
-				less.add(nodeArray[currentIndex].getValue());
+		int targetIndex = getNodeIndex(key), side = leftOrRight(targetIndex);
+		if (targetIndex != -1)
+		{	
+			if (side == 1)
+			{
+				ArrayList<V> lessLeft = new ArrayList<V>() , lessParent = new ArrayList<V>();
+				lessLeft = leftLesser(targetIndex,0);
+				lessParent = parentLesser(targetIndex);
+				less.addAll(lessLeft);
+				less.addAll(lessParent);
+				
+			}
+			else
+			{
+				ArrayList<V> lessLeft = new ArrayList<V>();
+				
+				lessLeft = leftLesser(targetIndex,0);
+				less.addAll(lessLeft);
+			}
+		}
+		else
+		{
+			throw new NoSuchElementException("There is no element with given key");
+		}
+		
+		return less;
+	}
+	private int leftOrRight(int index) {
+		if (index == 0) {
+			return 0;
+		}
+		else if ((index%2) == 1) {
+			return -1;
+		}
+		else {
+			return 1;
+		}
+	}
+	private ArrayList<V> leftLesser(int index,int time) {
+		ArrayList<V> less = new ArrayList<V>(),lessLeft = new ArrayList<V>(),lessRight = new ArrayList<V>();
+		int currentIndex = index*2+1;
+		time++;
+		if (nodeArray[currentIndex] != null) {
+			less.add(nodeArray[currentIndex].getValue());
+		}
+		if ((time != 1)&&(nodeArray[currentIndex+1] != null)) {
+			less.add(nodeArray[currentIndex+1].getValue());
+		}
+		
+		if (nodeArray[currentIndex] != null) {
+					
+			if (nodeArray[currentIndex*2+1] != null) {
+				lessLeft.add(nodeArray[currentIndex*2+1].getValue());
+				less.addAll(lessLeft);
+				less.addAll(leftLesser(currentIndex*2+1,time));
+			}
+			if (nodeArray[currentIndex*2+2] != null) {
+				lessRight.add(nodeArray[currentIndex*2+2].getValue());
+				less.addAll(lessRight);
+				less.addAll(leftLesser(currentIndex*2+2,time));
 			}
 			
 		}
+		
 		return less;
 	}
-
+	private int getParent(int index) {
+		int parent ;
+		if (index == 0){
+			parent = -1;
+		}
+		else {
+			parent = index/2;
+		}
+		return parent;
+		
+	}
+	private ArrayList<V> parentLesser(int index) {
+		ArrayList<V> less = new ArrayList<V>(),lessLeft = new ArrayList<V>(),lessRight = new ArrayList<V>();
+		int currentIndex = getParent(index);
+		if ((currentIndex <= maxIndex)&&(-1 < currentIndex )) {
+			if (currentIndex == 0) {
+				less.add(nodeArray[0].getValue());
+				lessLeft = leftLesser(0,0);
+				less.addAll(lessLeft);
+				less.addAll(lessRight);
+			}
+			else if (nodeArray[currentIndex] != null) {
+				
+				lessRight = leftLesser(currentIndex,0);
+				lessRight.add(nodeArray[currentIndex].getValue());
+				less.addAll(lessRight);
+				less.addAll(parentLesser(currentIndex));
+			}
+		} 
+		return less;
+	}
+	
 	
 	public List<V> greaterThan(K key) {
 		ArrayList<V> greater = new ArrayList<V>();
-		int currentIndex, targetIndex = getNodeIndex(key);
-		for(currentIndex = 0; currentIndex < maxIndex ; currentIndex++) {
-			if ((nodeArray[currentIndex].getKey().compareTo(nodeArray[targetIndex].getKey()))==1) {
-				greater.add(nodeArray[currentIndex].getValue());
+		int targetIndex = getNodeIndex(key), side = leftOrRight(targetIndex);
+		if (targetIndex != -1)
+		{	
+			if (side == -1)
+			{
+				ArrayList<V> greaterRight = new ArrayList<V>() , greaterParent = new ArrayList<V>();
+				greaterRight = rightGreater(targetIndex,0);
+				greaterParent = parentGreater(targetIndex);
+				greater.addAll(greaterRight);
+				greater.addAll(greaterParent);
+				
 			}
-			
+			else
+			{
+				ArrayList<V> greaterRight = new ArrayList<V>();
+				
+				greaterRight = rightGreater(targetIndex,0);
+				greater.addAll(greaterRight);
+			}
 		}
+		else
+		{
+			throw new NoSuchElementException("There is no element with given key");
+		}
+		
 		return greater;
 	}
 
 	
+	private ArrayList<V> parentGreater(int index) {
+		ArrayList<V> greater = new ArrayList<V>(),greaterLeft = new ArrayList<V>(),greaterRight = new ArrayList<V>();
+		int currentIndex = getParent(index);
+		if ((currentIndex <= maxIndex)&&(-1 < currentIndex )) {
+			if (currentIndex == 0) {
+				greater.add(nodeArray[0].getValue());
+				greaterRight = rightGreater(0,0);
+				greater.addAll(greaterRight);
+			}
+			else if (nodeArray[currentIndex] != null) {
+				
+				greaterRight.addAll(rightGreater(currentIndex,0));
+				greaterRight.add(nodeArray[currentIndex].getValue());
+				greater.addAll(greaterRight);
+				greater.addAll(parentGreater(currentIndex));
+			}
+		} 
+		return greater;
+	}
+	private ArrayList<V> rightGreater(int index, int time) {
+		ArrayList<V> greater = new ArrayList<V>(),greaterLeft = new ArrayList<V>(),greaterRight = new ArrayList<V>();
+		int currentIndex = index*2+2;
+		time++;
+		if ((currentIndex <= maxIndex)&&(-1 < currentIndex )) {
+		if (nodeArray[currentIndex] != null) {
+			greater.add(nodeArray[currentIndex].getValue());
+		}
+		if ((time != 1)&&(nodeArray[currentIndex-1] != null)) {
+			greater.add(nodeArray[currentIndex-1].getValue());
+			
+		}
+		}
+		if((currentIndex < maxIndex)&&(-1 < currentIndex )) {
+		if (nodeArray[currentIndex] != null) {
+					
+			if (nodeArray[currentIndex*2+1] != null) {
+				greaterLeft.add(nodeArray[currentIndex*2+1].getValue());
+				greater.addAll(greaterLeft);
+				greater.addAll(rightGreater(currentIndex*2+1,time));
+			}
+			if (nodeArray[currentIndex*2+2] != null) {
+				greaterRight.add(nodeArray[currentIndex*2+2].getValue());
+				greater.addAll(greaterRight);
+				greater.addAll(rightGreater(currentIndex*2+2,time));
+				
+			}
+			
+		}
+		}
+		return greater;
+	}
 	public int size() {
 
 		return size;
