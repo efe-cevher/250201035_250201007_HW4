@@ -21,18 +21,58 @@ public class VanillaBST<K extends Comparable<K>, V> implements BST<K, V> {
 	public VanillaBST(List<K> keyList, List<V> valueList) {
 		if(keyList.size() == valueList.size()) 
 		{
-			List<Node<K,V>> nodeList = new ArrayList<Node<K,V>>();
+			Node<K,V>[] tmpArray = (Node<K,V>[])new Node[keyList.size()];
 			nodeArray = (Node<K,V>[])new Node[keyList.size()];
 			for(int i=0; i<keyList.size();i++)
 			{
 				K key = keyList.get(i);
 				V value = valueList.get(i);
 				Node<K,V> newNode = new Node<K, V>(key, value);
-				nodeList.add(newNode);
-			
+				tmpArray[i] = newNode;
+				
 			}
+			insertionSort(tmpArray);
+			balance(tmpArray);
+			
 		}
 	}
+	private void balance(Node<K,V>[] arr) {
+		int n = arr.length;
+		int mid = n/2;
+
+		
+		add(arr[mid].getKey(),arr[mid].getValue());
+		
+		Node<K,V>[] left = Arrays.copyOfRange(arr, 0, mid);
+		Node<K,V>[] right = Arrays.copyOfRange(arr, mid+1, n);
+
+		balance(left);
+		balance(right);
+	}
+	
+	
+	
+	private void insertionSort(Node<K,V>[] arr)
+	{
+	   int i, j;
+	   Node<K,V> node;
+	   
+	   for (i = 1; i < arr.length; i++)
+	   {
+	       node = arr[i];
+	       j = i-1;
+
+	       while (j >= 0 && arr[j].getKey().compareTo(node.getKey()) > 0)
+	       {
+	           arr[j+1] = arr[j];
+	           j = j-1;
+	       }
+	       arr[j+1] = node;
+	   }
+	}
+	
+		
+	
 
 	private int getNodeIndex(K key) {
 		int currentIndex = 0;

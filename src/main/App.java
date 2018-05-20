@@ -1,10 +1,38 @@
 package main;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class App {
 
 	public static void main(String[] args) {
 		
-		BST<String,Integer> StockList = new VanillaBST<String,Integer>();
+		List<String> keyList = new ArrayList<String>();
+		List<Integer> valueList = new ArrayList<Integer>();
+		
+		keyList.add("a");
+		keyList.add("b");
+		keyList.add("c");
+		keyList.add("d");
+		keyList.add("e");
+		
+		valueList.add(1);
+		valueList.add(1);
+		valueList.add(1);
+		valueList.add(1);
+		valueList.add(1);
+		
+
+		
+		
+		
+		
+		
+		
+		BST<String,Integer> StockList = new VanillaBST<String,Integer>(keyList,valueList);
+		
+		
+		
 		
 		StockList.add("tea", 17);
 		StockList.add("towel", 24);
